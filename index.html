@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BEM FIKES UMLA — Universitas Muhammadiyah Lamongan</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Lenis, GSAP + ScrollTrigger, Motion -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/motion@11.15.0/dist/motion.js"></script>
+
+  <style>
+    :root {
+      --bg-page: #05160e;
+      --bg-surface: #0b2418;
+      --bg-surface-elevated: #103222;
+      --green-abyss: #030e09;
+      --green-dark: #092c1b;
+      --green-primary: #147a46;
+      --green-bright: #22a863;
+      --green-glow: rgba(34, 168, 99, 0.22);
+      --accent-gold: #e0b238;
+      --text-main: #eef8f2;
+      --text-muted: #9ec0ad;
+      --border-dark: rgba(110, 214, 158, 0.16);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      background-color: var(--bg-page);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(5, 22, 14, 0.84);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .container {
+      width: min(1140px, 92%);
+      margin-inline: auto;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-weight: 800;
+      font-size: 1rem;
+    }
+
+    .brand-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: linear-gradient(145deg, var(--green-bright), var(--green-dark));
+      color: #ffffff;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 0.85rem;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 24px;
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--green-bright);
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 22px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--green-bright), var(--green-primary));
+      color: #04150c;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.92rem;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(20, 122, 70, 0.35);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 68px 0 68px;
+      background:
+        radial-gradient(circle at 82% 18%, rgba(20, 122, 70, 0.34), transparent 46%),
+        radial-gradient(circle at 12% 85%, rgba(6, 46, 27, 0.75), transparent 52%),
+        linear-gradient(180deg, #061c12 0%, #05160e 100%);
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr);
+      gap: 36px;
+      align-items: center;
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(20, 122, 70, 0.22);
+      color: #8ee5b5;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+      border: 1px solid rgba(110, 214, 158, 0.25);
+    }
+
+    .hero-title {
+      font-size: clamp(2.1rem, 4.4vw, 3.35rem);
+      line-height: 1.15;
+      font-weight: 800;
+      color: #ffffff;
+      max-width: 18ch;
+      margin-bottom: 18px;
+    }
+
+    .hero-desc {
+      max-width: 56ch;
+      color: var(--text-muted);
+      font-size: 1.02rem;
+      margin-bottom: 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      padding: 12px 22px;
+      border-radius: 999px;
+      border: 1.5px solid rgba(142, 229, 181, 0.45);
+      color: var(--text-main);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.92rem;
+      background: rgba(11, 36, 24, 0.55);
+    }
+
+    /* Logo Pojok Kanan Atas */
+    .hero-photo-wrap {
+      position: relative;
+      border-radius: 24px;
+      padding: 14px;
+      background: linear-gradient(155deg, rgba(34, 168, 99, 0.34), rgba(9, 44, 27, 0.78));
+      border: 1px solid rgba(126, 226, 171, 0.28);
+      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.45);
+    }
+
+    .hero-photo-frame {
+      position: relative;
+      aspect-ratio: 1 / 1;
+      border-radius: 18px;
+      overflow: hidden;
+      padding: 24px;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at 50% 45%, rgba(20, 122, 70, 0.28), var(--bg-surface-elevated) 75%);
+    }
+
+    .hero-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+      filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.4));
+    }
+
+    .hero-photo-caption {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 6px 2px;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .hero-photo-caption strong {
+      color: #ffffff;
+      font-size: 0.88rem;
+    }
+
+    /* Sections */
+    section {
+      padding: 68px 0;
+    }
+
+    .section-head {
+      margin-bottom: 32px;
+    }
+
+    .section-title {
+      font-size: clamp(1.55rem, 3vw, 2.25rem);
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .section-sub {
+      color: var(--text-muted);
+      max-width: 60ch;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 22px;
+    }
+
+    .card {
+      background: linear-gradient(160deg, var(--bg-surface-elevated), var(--bg-surface));
+      border: 1px solid var(--border-dark);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #7ee2ab;
+      background: rgba(20, 122, 70, 0.26);
+      padding: 4px 10px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(126, 226, 171, 0.2);
+    }
+
+    .card h3 {
+      font-size: 1.15rem;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+
+    /* Split words helper */
+    [data-split-words] {
+      overflow: hidden;
+    }
+
+    .word-mask {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+      margin-right: 0.28em;
+    }
+
+    .word-inner {
+      display: inline-block;
+      will-change: transform, opacity;
+    }
+
+    [data-animate-card] {
+      will-change: transform, opacity;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--green-abyss);
+      color: var(--text-muted);
+      padding: 42px 0;
+      margin-top: 24px;
+      border-top: 1px solid var(--border-dark);
+    }
+
+    footer strong {
+      color: #ffffff;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 20px;
+      font-size: 0.9rem;
+    }
+
+    footer a {
+      color: #7ee2ab;
+      text-decoration: none;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-photo-wrap {
+        order: -1;
+        max-width: 380px;
+        width: 100%;
+        justify-self: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .word-inner,
+      [data-animate-card] {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="#beranda" class="brand">
+        <span class="brand-badge">BEM</span>
+        <span>BEM FIKES UMLA</span>[span_2](start_span)[span_2](end_span)
+      </a>
+      <ul class="nav-links">
+        <li><a href="#beranda">Beranda</a></li>
+        <li><a href="#program">Program &amp; Pilar</a></li>
+        <li><a href="#informasi">Informasi</a></li>
+        <li><a href="#kontak">Kontak</a></li>
+      </ul>
+      <a href="#kontak" class="btn-primary">Kanal Resmi</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="beranda" class="hero">
+      <div class="container hero-grid">
+        <div>
+          <span class="pill">Student Government in FIKES UMLA · Kabinet 2026</span>[span_3](start_span)[span_3](end_span)
+          <h1 class="hero-title" data-split-words>
+            Sinergi Kesehatan dan Gerak Nyata Mahasiswa FIKES UMLA
+          </h1>[span_4](start_span)[span_4](end_span)
+          <p class="hero-desc">
+            Portal resmi Badan Eksekutif Mahasiswa Fakultas Ilmu Kesehatan
+            Universitas Muhammadiyah Lamongan untuk aspirasi, program kerja,
+            kaderisasi, dan publikasi kegiatan kemahasiswaan.[span_5](start_span)[span_5](end_span)
+          </p>
+          <div class="hero-actions">
+            <a href="#program" class="btn-primary">Lihat Pilar Kegiatan</a>
+            <a href="#informasi" class="btn-outline">Agenda &amp; Kanal</a>
+          </div>
+        </div>
+
+        <!-- Logo Pojok Kanan Atas: img/logofikes.png -->
+        <aside class="hero-photo-wrap" data-animate-card>
+          <div class="hero-photo-frame">
+            <img
+              src="img/logofikes.png"
+              alt="Logo BEM FIKES UMLA"
+              onerror="this.replaceWith(document.getElementById('hero-photo-fallback').content.cloneNode(true))"
+            />
+            <template id="hero-photo-fallback">
+              <svg viewBox="0 0 400 400" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fallback logo img/logofikes.png">
+                <defs>
+                  <linearGradient id="bgGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#147a46" />
+                    <stop offset="55%" stop-color="#092c1b" />
+                    <stop offset="100%" stop-color="#04150c" />
+                  </linearGradient>
+                </defs>
+                <rect width="400" height="400" rx="16" fill="url(#bgGreen)" />
+                <text x="200" y="180" text-anchor="middle" fill="#eef8f2" font-family="Plus Jakarta Sans, sans-serif" font-size="22" font-weight="800">img/logofikes.png</text>
+                <text x="200" y="212" text-anchor="middle" fill="#9ec0ad" font-family="Plus Jakarta Sans, sans-serif" font-size="13">Pastikan file berada di folder img/</text>
+              </svg>
+            </template>
+          </div>
+          <div class="hero-photo-caption">
+            <div>
+              <strong>BEM FIKES UMLA</strong>[span_6](start_span)[span_6](end_span)
+              <div>Fakultas Ilmu Kesehatan · UMLA</div>[span_7](start_span)[span_7](end_span)
+            </div>
+            <span>@bemfikes.umla</span>[span_8](start_span)[span_8](end_span)
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="program">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title" data-split-words>Fokus Gerak &amp; Program Unggulan</h2>
+          <p class="section-sub">
+            Disusun untuk memperkuat kapasitas mahasiswa kesehatan sekaligus menjawab isu sosial dan akademik.
+          </p>
+        </div>
+        <div class="grid-3">
+          <article class="card" data-animate-card>
+            <span class="card-tag">Kaderisasi</span>
+            <h3>LKMM Pra-TD &amp; Pengembangan Diri</h3>
+            <p>Pembekalan kepemimpinan, manajemen organisasi, dan kesiapan kritis mahasiswa baru serta kader FIKES.</p>
+          </article>
+          <article class="card" data-animate-card>
+            <span class="card-tag">Advokasi &amp; Aksi</span>
+            <h3>Seruan Aksi &amp; Kepedulian Sosial</h3>
+            <p>Ruang aspirasi mahasiswa, kajian isu strategis, serta penggalangan kepedulian kemanusiaan dan kebencanaan.</p>
+          </article>
+          <article class="card" data-animate-card>
+            <span class="card-tag">Media &amp; Informasi</span>
+            <h3>Podcast, Nginformatif &amp; Dokumentasi</h3>
+            <p>Publikasi agenda kampus, edukasi kesehatan, dan arsip dokumentasi kegiatan BEM FIKES UMLA.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="informasi">
+      <div class="container">
+        <div class="section-head">
+          <h2 class="section-title" data-split-words>Sorotan Agenda &amp; Publikasi</h2>
+          <p class="section-sub">
+            Update rubrik dan momentum kegiatan yang hadir di kanal resmi BEM FIKES UMLA.
+          </p>
+        </div>
+        <div class="grid-3">
+          <article class="card" data-animate-card>
+            <span class="card-tag">Audio &amp; Diskusi</span>
+            <h3>PODCAST!</h3>
+            <p>Obrolan santai dan informatif seputar dunia perkuliahan, profesi kesehatan, dan dinamika kampus.</p>
+          </article>
+          <article class="card" data-animate-card>
+            <span class="card-tag">Edukasi Cepat</span>
+            <h3>NGINFORMATIF</h3>
+            <p>Rangkuman informasi penting, pengumuman akademik, serta wawasan praktis untuk civitas FIKES.</p>
+          </article>
+          <article class="card" data-animate-card>
+            <span class="card-tag">Arsip Visual</span>
+            <h3>Dokumentasi &amp; Peringatan Hari Besar</h3>
+            <p>Dokumentasi kegiatan lapangan serta publikasi momentum nasional dan kepedulian sosial.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="kontak">
+    <div class="container footer-inner">
+      <div>
+        <strong>BEM Fakultas Ilmu Kesehatan · Universitas Muhammadiyah Lamongan</strong>[span_9](start_span)[span_9](end_span)
+        <p>Email: <a href="mailto:bemfikesumla@gmail.com">bemfikesumla@gmail.com</a></p>[span_10](start_span)[span_10](end_span)
+      </div>
+      <div>
+        <p>Instagram: <a href="https://instagram.com/bemfikes.umla" target="_blank" rel="noopener">@bemfikes.umla</a></p>[span_11](start_span)[span_11](end_span)[span_12](start_span)[span_12](end_span)
+        <p>Tautan: <a href="https://linktr.ee" target="_blank" rel="noopener">Taplink BEM FIKES</a></p>[span_13](start_span)[span_13](end_span)
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      const lenis = new Lenis({
+        duration: 1.15,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+      });
+
+      if (window.gsap && window.ScrollTrigger) {
+        gsap.registerPlugin(ScrollTrigger);
+        lenis.on("scroll", ScrollTrigger.update);
+        gsap.ticker.add((time) => lenis.raf(time * 1000));
+        gsap.ticker.lagSmoothing(0);
+
+        document.querySelectorAll("[data-split-words]").forEach((el) => {
+          const text = el.textContent.trim().replace(/\s+/g, " ");
+          if (!text) return;
+          el.setAttribute("aria-label", text);
+          el.innerHTML = text
+            .split(" ")
+            .map((w) => `<span class="word-mask" aria-hidden="true"><span class="word-inner">${w}</span></span>`)
+            .join(" ");
+
+          gsap.fromTo(
+            el.querySelectorAll(".word-inner"),
+            { yPercent: 110, opacity: 0 },
+            {
+              yPercent: 0,
+              opacity: 1,
+              duration: 0.7,
+              stagger: 0.045,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: el,
+                start: "top 86%",
+                once: true,
+              },
+            }
+          );
+        });
+      } else {
+        const raf = (time) => {
+          lenis.raf(time);
+          requestAnimationFrame(raf);
+        };
+        requestAnimationFrame(raf);
+      }
+
+      const MotionGlobal = window.Motion;
+      const cards = document.querySelectorAll("[data-animate-card]");
+      if (MotionGlobal && cards.length) {
+        const { animate, inView } = MotionGlobal;
+        cards.forEach((card) => {
+          animate(card, { opacity: 0, y: 24 }, { duration: 0 });
+          inView(
+            card,
+            () => {
+              animate(card, { opacity: 1, y: 0 }, { duration: 0.55, ease: [0.22, 1, 0.36, 1] });
+            },
+            { amount: "some" }
+          );
+          card.addEventListener("pointerenter", () => {
+            animate(card, { y: -6, scale: 1.015 }, { type: "spring", stiffness: 360, damping: 24 });
+          });
+          card.addEventListener("pointerleave", () => {
+            animate(card, { y: 0, scale: 1 }, { type: "spring", stiffness: 360, damping: 26 });
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>
