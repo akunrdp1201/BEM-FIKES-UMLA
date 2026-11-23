@@ -63,10 +63,11 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 16px 0;
+      padding: 14px 0;
       gap: 16px;
     }
 
+    /* Logo Pojok Kiri Atas */
     .brand {
       display: flex;
       align-items: center;
@@ -77,17 +78,24 @@
       font-size: 1rem;
     }
 
-    .brand-badge {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      background: linear-gradient(145deg, var(--green-bright), var(--green-dark));
-      color: #ffffff;
-      display: grid;
-      place-items: center;
-      font-weight: 800;
-      font-size: 0.85rem;
-      border: 1px solid rgba(255, 255, 255, 0.18);
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .brand-text small {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
     }
 
     .nav-links {
@@ -126,19 +134,12 @@
 
     /* Hero */
     .hero {
-      padding: 68px 0 68px;
+      padding: 80px 0 68px;
       background:
         radial-gradient(circle at 82% 18%, rgba(20, 122, 70, 0.34), transparent 46%),
         radial-gradient(circle at 12% 85%, rgba(6, 46, 27, 0.75), transparent 52%),
         linear-gradient(180deg, #061c12 0%, #05160e 100%);
       border-bottom: 1px solid var(--border-dark);
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr);
-      gap: 36px;
-      align-items: center;
     }
 
     .pill {
@@ -154,7 +155,7 @@
     }
 
     .hero-title {
-      font-size: clamp(2.1rem, 4.4vw, 3.35rem);
+      font-size: clamp(2.1rem, 4.5vw, 3.5rem);
       line-height: 1.15;
       font-weight: 800;
       color: #ffffff;
@@ -163,7 +164,7 @@
     }
 
     .hero-desc {
-      max-width: 56ch;
+      max-width: 58ch;
       color: var(--text-muted);
       font-size: 1.02rem;
       margin-bottom: 28px;
@@ -186,50 +187,6 @@
       font-weight: 700;
       font-size: 0.92rem;
       background: rgba(11, 36, 24, 0.55);
-    }
-
-    /* Logo Pojok Kanan Atas */
-    .hero-photo-wrap {
-      position: relative;
-      border-radius: 24px;
-      padding: 14px;
-      background: linear-gradient(155deg, rgba(34, 168, 99, 0.34), rgba(9, 44, 27, 0.78));
-      border: 1px solid rgba(126, 226, 171, 0.28);
-      box-shadow: 0 22px 48px rgba(0, 0, 0, 0.45);
-    }
-
-    .hero-photo-frame {
-      position: relative;
-      aspect-ratio: 1 / 1;
-      border-radius: 18px;
-      overflow: hidden;
-      padding: 24px;
-      display: grid;
-      place-items: center;
-      background: radial-gradient(circle at 50% 45%, rgba(20, 122, 70, 0.28), var(--bg-surface-elevated) 75%);
-    }
-
-    .hero-photo-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-      filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.4));
-    }
-
-    .hero-photo-caption {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 12px 6px 2px;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-    }
-
-    .hero-photo-caption strong {
-      color: #ffffff;
-      font-size: 0.88rem;
     }
 
     /* Sections */
@@ -337,19 +294,6 @@
       text-decoration: none;
     }
 
-    @media (max-width: 900px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-photo-wrap {
-        order: -1;
-        max-width: 380px;
-        width: 100%;
-        justify-self: center;
-      }
-    }
-
     @media (max-width: 768px) {
       .nav-links {
         display: none;
@@ -368,10 +312,15 @@
 <body>
   <header class="navbar">
     <div class="container nav-inner">
+      <!-- Logo Pojok Kiri Atas -->
       <a href="#beranda" class="brand">
-        <span class="brand-badge">BEM</span>
-        <span>BEM FIKES UMLA</span>[span_2](start_span)[span_2](end_span)
+        <img src="img/logofikes.png" alt="Logo BEM FIKES UMLA" class="brand-logo" />
+        <span class="brand-text">
+          <span>BEM FIKES UMLA</span>
+          <small>Universitas Muhammadiyah Lamongan</small>
+        </span>
       </a>
+
       <ul class="nav-links">
         <li><a href="#beranda">Beranda</a></li>
         <li><a href="#program">Program &amp; Pilar</a></li>
@@ -384,54 +333,20 @@
 
   <main>
     <section id="beranda" class="hero">
-      <div class="container hero-grid">
-        <div>
-          <span class="pill">Student Government in FIKES UMLA · Kabinet 2026</span>[span_3](start_span)[span_3](end_span)
-          <h1 class="hero-title" data-split-words>
-            Sinergi Kesehatan dan Gerak Nyata Mahasiswa FIKES UMLA
-          </h1>[span_4](start_span)[span_4](end_span)
-          <p class="hero-desc">
-            Portal resmi Badan Eksekutif Mahasiswa Fakultas Ilmu Kesehatan
-            Universitas Muhammadiyah Lamongan untuk aspirasi, program kerja,
-            kaderisasi, dan publikasi kegiatan kemahasiswaan.[span_5](start_span)[span_5](end_span)
-          </p>
-          <div class="hero-actions">
-            <a href="#program" class="btn-primary">Lihat Pilar Kegiatan</a>
-            <a href="#informasi" class="btn-outline">Agenda &amp; Kanal</a>
-          </div>
+      <div class="container">
+        <span class="pill">Student Government in FIKES UMLA · Kabinet 2026</span>[span_0](start_span)[span_0](end_span)
+        <h1 class="hero-title" data-split-words>
+          Sinergi Kesehatan dan Gerak Nyata Mahasiswa FIKES UMLA
+        </h1>
+        <p class="hero-desc">
+          Portal resmi Badan Eksekutif Mahasiswa Fakultas Ilmu Kesehatan
+          Universitas Muhammadiyah Lamongan untuk aspirasi, program kerja,
+          kaderisasi, dan publikasi kegiatan kemahasiswaan.[span_1](start_span)[span_1](end_span)
+        </p>
+        <div class="hero-actions">
+          <a href="#program" class="btn-primary">Lihat Pilar Kegiatan</a>
+          <a href="#informasi" class="btn-outline">Agenda &amp; Kanal</a>
         </div>
-
-        <!-- Logo Pojok Kanan Atas: img/logofikes.png -->
-        <aside class="hero-photo-wrap" data-animate-card>
-          <div class="hero-photo-frame">
-            <img
-              src="img/logofikes.png"
-              alt="Logo BEM FIKES UMLA"
-              onerror="this.replaceWith(document.getElementById('hero-photo-fallback').content.cloneNode(true))"
-            />
-            <template id="hero-photo-fallback">
-              <svg viewBox="0 0 400 400" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fallback logo img/logofikes.png">
-                <defs>
-                  <linearGradient id="bgGreen" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stop-color="#147a46" />
-                    <stop offset="55%" stop-color="#092c1b" />
-                    <stop offset="100%" stop-color="#04150c" />
-                  </linearGradient>
-                </defs>
-                <rect width="400" height="400" rx="16" fill="url(#bgGreen)" />
-                <text x="200" y="180" text-anchor="middle" fill="#eef8f2" font-family="Plus Jakarta Sans, sans-serif" font-size="22" font-weight="800">img/logofikes.png</text>
-                <text x="200" y="212" text-anchor="middle" fill="#9ec0ad" font-family="Plus Jakarta Sans, sans-serif" font-size="13">Pastikan file berada di folder img/</text>
-              </svg>
-            </template>
-          </div>
-          <div class="hero-photo-caption">
-            <div>
-              <strong>BEM FIKES UMLA</strong>[span_6](start_span)[span_6](end_span)
-              <div>Fakultas Ilmu Kesehatan · UMLA</div>[span_7](start_span)[span_7](end_span)
-            </div>
-            <span>@bemfikes.umla</span>[span_8](start_span)[span_8](end_span)
-          </div>
-        </aside>
       </div>
     </section>
 
@@ -495,12 +410,12 @@
   <footer id="kontak">
     <div class="container footer-inner">
       <div>
-        <strong>BEM Fakultas Ilmu Kesehatan · Universitas Muhammadiyah Lamongan</strong>[span_9](start_span)[span_9](end_span)
-        <p>Email: <a href="mailto:bemfikesumla@gmail.com">bemfikesumla@gmail.com</a></p>[span_10](start_span)[span_10](end_span)
+        <strong>BEM Fakultas Ilmu Kesehatan · Universitas Muhammadiyah Lamongan</strong>[span_2](start_span)[span_2](end_span)
+        <p>Email: <a href="mailto:bemfikesumla@gmail.com">bemfikesumla@gmail.com</a></p>[span_3](start_span)[span_3](end_span)
       </div>
       <div>
-        <p>Instagram: <a href="https://instagram.com/bemfikes.umla" target="_blank" rel="noopener">@bemfikes.umla</a></p>[span_11](start_span)[span_11](end_span)[span_12](start_span)[span_12](end_span)
-        <p>Tautan: <a href="https://linktr.ee" target="_blank" rel="noopener">Taplink BEM FIKES</a></p>[span_13](start_span)[span_13](end_span)
+        <p>Instagram: <a href="https://instagram.com/bemfikes.umla" target="_blank" rel="noopener">@bemfikes.umla</a></p>[span_4](start_span)[span_4](end_span)[span_5](start_span)[span_5](end_span)
+        <p>Tautan: <a href="https://linktr.ee" target="_blank" rel="noopener">Taplink BEM FIKES</a></p>[span_6](start_span)[span_6](end_span)
       </div>
     </div>
   </footer>
