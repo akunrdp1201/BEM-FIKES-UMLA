@@ -3,18 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- ✏️ BOLEH DIUBAH: judul tab & deskripsi (muncul di Google / saat link dibagikan) -->
   <title>BEM FIKES UMLA — Universitas Muhammadiyah Lamongan</title>
+  <meta name="description" content="Portal resmi BEM Fakultas Ilmu Kesehatan Universitas Muhammadiyah Lamongan: kaderisasi, advokasi, edukasi publik, dan program kerja mahasiswa." />
+  <meta property="og:title" content="BEM FIKES UMLA" />
+  <meta property="og:description" content="Ruang gerak & karya mahasiswa kesehatan UMLA." />
+  <meta property="og:image" content="img/kabinet.jpg" />
+  <link rel="icon" href="img/logofikes.png" type="image/png" />
+
+  <!-- ⛔ JANGAN DIUBAH: font & library animasi (butuh internet) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
-  <!-- Lenis, GSAP + ScrollTrigger, Motion -->
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/motion@11.15.0/dist/motion.js"></script>
 
+  <!-- ⛔ JANGAN DIUBAH kecuali paham CSS (kecuali bagian warna di :root). -->
   <style>
+    /* ✏️ BOLEH DIUBAH: warna tema. Ganti kode warna (#xxxxxx) di bawah ini. */
     :root {
       --bg-white: #ffffff;
       --bg-soft: #f3faf6;
@@ -140,11 +147,11 @@
 
     /* Tata Letak Baru: Split Hero (Kiri Info + Agenda, Kanan Foto Kabinet) */
     .hero {
-      padding: 44px 0 36px;
+      padding: 44px 0 64px;
       background:
         radial-gradient(circle at 85% 15%, rgba(34, 168, 99, 0.25), transparent 46%),
         radial-gradient(circle at 10% 85%, rgba(10, 56, 35, 0.22), transparent 50%),
-        linear-gradient(180deg, #062416 0%, #0e4e30 38%, #e5f5ec 78%, #ffffff 100%);
+        linear-gradient(180deg, #062416 0%, #0e4e30 62%, #e5f5ec 94%, #ffffff 100%);
     }
 
     .hero-split {
@@ -193,6 +200,7 @@
       font-size: 0.96rem;
       margin-bottom: 22px;
       max-width: 50ch;
+      text-shadow: 0 2px 10px rgba(4, 24, 15, 0.35);
     }
 
     .hero-cta-row {
@@ -306,6 +314,11 @@
     .cabinet-foot span {
       color: var(--text-muted);
       font-size: 0.8rem;
+    }
+
+    .cabinet-foot .ig-badge {
+      color: #ffffff;
+      text-decoration: none;
     }
 
     .ig-badge {
@@ -557,19 +570,62 @@
         transform: none !important;
       }
     }
+  
+    /* Sosial media */
+    .social-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .social-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    .social-link:hover {
+      background: rgba(255, 255, 255, 0.24);
+      transform: translateY(-2px);
+    }
+
+    .social-link svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+      flex-shrink: 0;
+    }
+
+    .footer-title {
+      display: block;
+      margin-bottom: 2px;
+    }
   </style>
 </head>
 <body>
+  <!-- ===== NAVBAR ===== -->
   <header class="navbar">
     <div class="container nav-inner">
       <a href="#beranda" class="brand">
-        <img src="img/logofikes.png" alt="Logo BEM FIKES UMLA" class="brand-logo" />
+        <img src="img/logofikes.png" alt="Logo BEM FIKES UMLA" class="brand-logo" width="44" height="44" />
         <span class="brand-text">
+          <!-- ✏️ BOLEH DIUBAH: nama organisasi -->
           <span>BEM FIKES UMLA</span>
           <small>FAKULTAS ILMU KESEHATAN</small>
         </span>
       </a>
 
+      <!-- ✏️ BOLEH DIUBAH: teks menu. ⛔ Jangan ubah isi href="#..." (itu penghubung ke bagian halaman) -->
       <ul class="nav-links" id="navLinks">
         <li><a href="#beranda">Beranda</a></li>
         <li><a href="#ringkasan">Ringkasan</a></li>
@@ -577,15 +633,17 @@
         <li><a href="#kontak">Kontak</a></li>
       </ul>
 
-      <a href="#kontak" class="btn-nav">@bemfikes.umla</a>
+      <a href="https://www.instagram.com/bemfikes.umla" target="_blank" rel="noopener" class="btn-nav">@bemfikes.umla</a>
       <button class="menu-toggle" id="menuToggle" type="button" aria-label="Buka menu navigasi">☰</button>
     </div>
   </header>
 
   <main>
+    <!-- ===== HERO ===== -->
     <section id="beranda" class="hero">
       <div class="container hero-split">
         <div>
+          <!-- ✏️ BOLEH DIUBAH: semua teks di blok ini (label, judul, deskripsi, teks tombol) -->
           <div class="hero-eyebrow">
             <span class="hero-dot"></span>
             <span>BEM FIKES UMLA · Kabinet 2026</span>
@@ -604,16 +662,10 @@
 
         <figure class="cabinet-card" data-animate-card>
           <div class="cabinet-media">
-            <img
-              src="img/kabinet.png"
-              alt="Seluruh Foto Anggota BEM FIKES UMLA"
-              onload="this.classList.add('is-loaded')"
-              onerror="this.classList.add('is-error')"
-            />
-            <div class="cabinet-fallback" aria-hidden="true">
-              <strong>SELURUH FOTO ANGGOTA BEM</strong>
-              <span>Pastikan file <code>img/kabinet.png</code> ada di folder <code>img/</code></span>
-            </div>
+            <!-- ✏️ BOLEH DIUBAH: ganti foto dengan menimpa file img/kabinet.jpg (rasio 16:10 paling pas, maks ±500 KB) -->
+            <img src="img/kabinet.jpg" alt="Seluruh anggota BEM FIKES UMLA" width="1800" height="1013"
+                 onerror="this.style.display='none'" />
+            <div class="cabinet-fallback" aria-hidden="true"><strong>BEM FIKES UMLA</strong></div>
             <span class="cabinet-corner-tag">Kabinet 2026</span>
           </div>
           <figcaption class="cabinet-foot">
@@ -621,35 +673,26 @@
               <strong>Seluruh Anggota BEM FIKES UMLA</strong>
               <span>Jajaran Pengurus Fakultas Ilmu Kesehatan UMLA</span>
             </div>
-            <span class="ig-badge">@bemfikes.umla</span>
+            <a class="ig-badge" href="https://www.instagram.com/bemfikes.umla" target="_blank" rel="noopener">@bemfikes.umla</a>
           </figcaption>
         </figure>
       </div>
     </section>
 
+    <!-- ===== STATISTIK ===== -->
     <section id="ringkasan" class="stats-strip-wrap">
       <div class="container">
+        <!-- ✏️ BOLEH DIUBAH: angka (class stat-value) dan keterangan (class stat-title). Pastikan angkanya benar! -->
         <div class="stats-strip" data-animate-card>
-          <div class="stat-box">
-            <div class="stat-value">05</div>
-            <div class="stat-title">Divisi Strategis</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-value">11</div>
-            <div class="stat-title">Program Kerja</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-value">45+</div>
-            <div class="stat-title">Pengurus &amp; Anggota</div>
-          </div>
-          <div class="stat-box">
-            <div class="stat-value">100%</div>
-            <div class="stat-title">Komitmen Pengabdian</div>
-          </div>
+          <div class="stat-box"><div class="stat-value">05</div><div class="stat-title">Divisi Strategis</div></div>
+          <div class="stat-box"><div class="stat-value">11</div><div class="stat-title">Program Kerja</div></div>
+          <div class="stat-box"><div class="stat-value">45+</div><div class="stat-title">Pengurus &amp; Anggota</div></div>
+          <div class="stat-box"><div class="stat-value">100%</div><div class="stat-title">Komitmen Pengabdian</div></div>
         </div>
       </div>
     </section>
 
+    <!-- ===== AGENDA & PILAR ===== -->
     <section id="pilar" class="pillars-section">
       <div class="container">
         <div class="section-head">
@@ -658,6 +701,7 @@
         </div>
 
         <div class="bento-grid">
+          <!-- ✏️ BOLEH DIUBAH: agenda unggulan (judul & deskripsi) -->
           <div class="highlight-panel" data-animate-card>
             <div>
               <span class="hero-eyebrow" style="margin-bottom: 12px;">
@@ -674,6 +718,7 @@
             </div>
           </div>
 
+          <!-- ✏️ BOLEH DIUBAH: kartu program. Mau tambah kartu? Salin satu blok <article>…</article> -->
           <div class="stack-cards">
             <article class="card" data-animate-card>
               <span class="card-tag">Kaderisasi &amp; Advokasi</span>
@@ -691,48 +736,89 @@
     </section>
   </main>
 
+  <!-- ===== FOOTER & KONTAK ===== -->
+  <!-- ✏️ BOLEH DIUBAH: email & link sosial media (ganti isi href="..."). ⛔ Jangan hapus id="kontak" -->
   <footer id="kontak">
     <div class="container footer-inner">
       <div>
-        <strong>BEM Fakultas Ilmu Kesehatan · Universitas Muhammadiyah Lamongan</strong>
+        <strong class="footer-title">BEM Fakultas Ilmu Kesehatan · Universitas Muhammadiyah Lamongan</strong>
         <p>Email: <a href="mailto:bemfikesumla@gmail.com">bemfikesumla@gmail.com</a></p>
       </div>
       <div>
-        <p>Instagram: <a href="https://instagram.com/bemfikes.umla" target="_blank" rel="noopener">@bemfikes.umla</a></p>
-        <p>Kanal: <a href="https://linktr.ee" target="_blank" rel="noopener">Taplink BEM FIKES</a></p>
+        <strong class="footer-title">Sosial Media Resmi</strong>
+        <div class="social-list">
+          <a class="social-link" href="https://www.instagram.com/bemfikes.umla" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.3-3.1a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></svg>Instagram</a>
+          <a class="social-link" href="https://www.tiktok.com/@bemfikes.umla" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 2h-3.2v13.4a2.8 2.8 0 1 1-2-2.7V9.4a6 6 0 1 0 5.2 5.9V8.6a7.4 7.4 0 0 0 4.3 1.4V6.8A4.3 4.3 0 0 1 16.6 2z"/></svg>TikTok</a>
+          <a class="social-link" href="https://youtube.com/@bemfikesumla" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5.2 3L10 15z"/></svg>YouTube</a>
+        </div>
       </div>
     </div>
   </footer>
 
+  <!-- ⛔ JANGAN DIUBAH: skrip menu mobile & animasi scroll. Kalau diubah, animasi/menu bisa rusak. -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const toggle = document.getElementById("menuToggle");
       const navLinks = document.getElementById("navLinks");
       if (toggle && navLinks) {
-        toggle.addEventListener("click", () => {
-          navLinks.classList.toggle("is-open");
-        });
+        toggle.addEventListener("click", () => navLinks.classList.toggle("is-open"));
+        navLinks.querySelectorAll("a").forEach((a) =>
+          a.addEventListener("click", () => navLinks.classList.remove("is-open"))
+        );
       }
 
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+      if (!window.gsap || !window.ScrollTrigger || !window.Lenis) return;
 
-      // 1. Lenis Smooth Scroll + GSAP ScrollTrigger Sync
+      // Smooth scroll + sinkron dengan ScrollTrigger
       const lenis = new Lenis({
         duration: 1.15,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         smoothWheel: true,
       });
+      gsap.registerPlugin(ScrollTrigger);
+      lenis.on("scroll", ScrollTrigger.update);
+      gsap.ticker.add((time) => lenis.raf(time * 1000));
+      gsap.ticker.lagSmoothing(0);
 
-      if (window.gsap && window.ScrollTrigger) {
-        gsap.registerPlugin(ScrollTrigger);
-        lenis.on("scroll", ScrollTrigger.update);
-        gsap.ticker.add((time) => lenis.raf(time * 1000));
-        gsap.ticker.lagSmoothing(0);
+      // Judul muncul per kata
+      document.querySelectorAll("[data-split-words]").forEach((el) => {
+        const walk = (node) => {
+          [...node.childNodes].forEach((n) => {
+            if (n.nodeType === 3) {
+              const frag = document.createDocumentFragment();
+              n.textContent.split(/(\s+)/).forEach((part) => {
+                if (!part) return;
+                if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
+                const mask = document.createElement("span");
+                mask.className = "word-mask";
+                const inner = document.createElement("span");
+                inner.className = "word-inner";
+                inner.textContent = part;
+                mask.appendChild(inner);
+                frag.appendChild(mask);
+              });
+              n.replaceWith(frag);
+            } else if (n.nodeType === 1) {
+              walk(n);
+            }
+          });
+        };
+        walk(el);
+        gsap.from(el.querySelectorAll(".word-inner"), {
+          yPercent: 110, opacity: 0, duration: 0.8, ease: "power3.out", stagger: 0.07,
+          scrollTrigger: { trigger: el, start: "top 88%", once: true },
+        });
+      });
 
-        // 2. Judul muncul per kata saat discroll
-        document.querySelectorAll("[data-split-words]").forEach((el) => {
-          const text = el.textContent.trim().replace(/\s+/g, " ");
-          if (!text) return;
-          el.setAttribute("aria-label", text);
-          el.innerHTML = text
-            .spli
+      // Kartu muncul saat discroll
+      document.querySelectorAll("[data-animate-card]").forEach((el) => {
+        gsap.from(el, {
+          y: 40, opacity: 0, duration: 0.9, ease: "power3.out",
+          scrollTrigger: { trigger: el, start: "top 90%", once: true },
+        });
+      });
+    });
+  </script>
+</body>
+</html>
