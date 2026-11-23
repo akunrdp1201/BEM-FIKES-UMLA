@@ -16,18 +16,16 @@
 
   <style>
     :root {
-      --bg-page: #05160e;
-      --bg-surface: #0b2418;
-      --bg-surface-elevated: #103222;
-      --green-abyss: #030e09;
-      --green-dark: #092c1b;
+      --bg-white: #ffffff;
+      --bg-mint-white: #f3faf6;
+      --green-abyss: #051d12;
+      --green-dark: #0a3622;
       --green-primary: #147a46;
       --green-bright: #22a863;
-      --green-glow: rgba(34, 168, 99, 0.22);
-      --accent-gold: #e0b238;
-      --text-main: #eef8f2;
-      --text-muted: #9ec0ad;
-      --border-dark: rgba(110, 214, 158, 0.16);
+      --green-soft: #e4f4eb;
+      --text-dark: #0c2619;
+      --text-muted: #496657;
+      --border-soft: rgba(20, 122, 70, 0.16);
     }
 
     * {
@@ -38,20 +36,20 @@
 
     body {
       font-family: "Plus Jakarta Sans", sans-serif;
-      background-color: var(--bg-page);
-      color: var(--text-main);
+      background: linear-gradient(180deg, #ffffff 0%, #f4faf6 55%, #ffffff 100%);
+      color: var(--text-dark);
       line-height: 1.6;
       overflow-x: hidden;
     }
 
-    /* Navbar */
+    /* Navbar: gradasi hijau gelap ke hijau transparan */
     .navbar {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(5, 22, 14, 0.84);
+      background: linear-gradient(90deg, rgba(5, 29, 18, 0.96) 0%, rgba(10, 54, 34, 0.94) 60%, rgba(20, 122, 70, 0.92) 100%);
       backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--border-dark);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     }
 
     .container {
@@ -73,7 +71,7 @@
       align-items: center;
       gap: 12px;
       text-decoration: none;
-      color: var(--text-main);
+      color: #ffffff;
       font-weight: 800;
       font-size: 1rem;
     }
@@ -95,7 +93,7 @@
     .brand-text small {
       font-size: 0.72rem;
       font-weight: 600;
-      color: var(--text-muted);
+      color: #bfe7d0;
     }
 
     .nav-links {
@@ -108,85 +106,159 @@
 
     .nav-links a {
       text-decoration: none;
-      color: var(--text-muted);
+      color: #dcf3e6;
       transition: color 0.2s ease;
     }
 
     .nav-links a:hover {
-      color: var(--green-bright);
+      color: #ffffff;
     }
 
     .btn-primary {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 22px;
+      padding: 12px 24px;
       border-radius: 999px;
-      background: linear-gradient(135deg, var(--green-bright), var(--green-primary));
-      color: #04150c;
+      background: linear-gradient(135deg, var(--green-bright) 0%, var(--green-primary) 55%, var(--green-dark) 100%);
+      color: #ffffff;
       text-decoration: none;
-      font-weight: 800;
+      font-weight: 700;
       font-size: 0.92rem;
       border: none;
       cursor: pointer;
-      box-shadow: 0 8px 24px rgba(20, 122, 70, 0.35);
+      box-shadow: 0 10px 24px rgba(10, 54, 34, 0.22);
     }
 
-    /* Hero */
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #ffffff 0%, #e4f4eb 100%);
+      color: var(--green-dark);
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.88rem;
+    }
+
+    /* Hero: Gradasi Hijau Gelap -> Hijau -> Putih Bersih */
     .hero {
-      padding: 80px 0 68px;
+      padding: 56px 0 64px;
       background:
-        radial-gradient(circle at 82% 18%, rgba(20, 122, 70, 0.34), transparent 46%),
-        radial-gradient(circle at 12% 85%, rgba(6, 46, 27, 0.75), transparent 52%),
-        linear-gradient(180deg, #061c12 0%, #05160e 100%);
-      border-bottom: 1px solid var(--border-dark);
+        radial-gradient(circle at 15% 10%, rgba(34, 168, 99, 0.28), transparent 45%),
+        radial-gradient(circle at 85% 20%, rgba(10, 54, 34, 0.35), transparent 48%),
+        linear-gradient(180deg, #072819 0%, #0e4a2d 32%, #d8f0e2 74%, #ffffff 100%);
+    }
+
+    .hero-top {
+      text-align: center;
+      max-width: 780px;
+      margin: 0 auto 36px;
     }
 
     .pill {
       display: inline-block;
-      padding: 6px 14px;
+      padding: 6px 16px;
       border-radius: 999px;
-      background: rgba(20, 122, 70, 0.22);
-      color: #8ee5b5;
+      background: rgba(255, 255, 255, 0.14);
+      color: #ffffff;
+      backdrop-filter: blur(8px);
       font-size: 0.8rem;
       font-weight: 700;
-      margin-bottom: 18px;
-      border: 1px solid rgba(110, 214, 158, 0.25);
+      margin-bottom: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
     }
 
     .hero-title {
-      font-size: clamp(2.1rem, 4.5vw, 3.5rem);
+      font-size: clamp(2rem, 4.3vw, 3.3rem);
       line-height: 1.15;
       font-weight: 800;
       color: #ffffff;
-      max-width: 18ch;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
+      text-shadow: 0 4px 20px rgba(5, 29, 18, 0.35);
     }
 
     .hero-desc {
-      max-width: 58ch;
-      color: var(--text-muted);
+      color: #eaf7f0;
       font-size: 1.02rem;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
 
     .hero-actions {
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
       gap: 14px;
     }
 
-    .btn-outline {
+    .btn-outline-light {
       display: inline-flex;
       align-items: center;
-      padding: 12px 22px;
+      padding: 12px 24px;
       border-radius: 999px;
-      border: 1.5px solid rgba(142, 229, 181, 0.45);
-      color: var(--text-main);
+      border: 1.5px solid rgba(255, 255, 255, 0.75);
+      color: #ffffff;
       text-decoration: none;
       font-weight: 700;
       font-size: 0.92rem;
-      background: rgba(11, 36, 24, 0.55);
+      background: rgba(5, 29, 18, 0.28);
+      backdrop-filter: blur(6px);
+    }
+
+    /* Tata Letak Foto Atas: Seluruh Anggota Kabinet */
+    .cabinet-banner {
+      background: linear-gradient(145deg, #ffffff 0%, #eaf6ef 100%);
+      padding: 14px;
+      border-radius: 26px;
+      border: 1px solid rgba(20, 122, 70, 0.22);
+      box-shadow: 0 24px 54px rgba(7, 40, 25, 0.16);
+    }
+
+    .cabinet-photo-frame {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 8.2;
+      border-radius: 18px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #072819 0%, #147a46 55%, #22a863 100%);
+    }
+
+    .cabinet-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 25%;
+      display: block;
+    }
+
+    .cabinet-caption {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 10px 4px;
+    }
+
+    .cabinet-caption strong {
+      color: var(--green-dark);
+      font-size: 1rem;
+    }
+
+    .cabinet-caption span {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .cabinet-badge {
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--green-dark), var(--green-primary));
+      color: #ffffff;
+      font-size: 0.78rem;
+      font-weight: 700;
     }
 
     /* Sections */
@@ -198,10 +270,20 @@
       margin-bottom: 32px;
     }
 
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--green-primary);
+      margin-bottom: 6px;
+    }
+
     .section-title {
       font-size: clamp(1.55rem, 3vw, 2.25rem);
       font-weight: 800;
-      color: #ffffff;
+      color: var(--green-dark);
       margin-bottom: 8px;
     }
 
@@ -216,29 +298,39 @@
       gap: 22px;
     }
 
+    /* Card Putih dengan Sentuhan Gradasi Hijau */
     .card {
-      background: linear-gradient(160deg, var(--bg-surface-elevated), var(--bg-surface));
-      border: 1px solid var(--border-dark);
-      border-radius: 20px;
-      padding: 24px;
-      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.35);
+      background: linear-gradient(165deg, #ffffff 0%, #f1faf5 100%);
+      border: 1px solid var(--border-soft);
+      border-radius: 22px;
+      padding: 26px;
+      box-shadow: 0 14px 32px rgba(10, 54, 34, 0.07);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--green-dark), var(--green-bright), #a6e6c3);
     }
 
     .card-tag {
       display: inline-block;
       font-size: 0.75rem;
       font-weight: 700;
-      color: #7ee2ab;
-      background: rgba(20, 122, 70, 0.26);
-      padding: 4px 10px;
+      color: var(--green-dark);
+      background: linear-gradient(135deg, #d8f3e4, #eaf8f0);
+      padding: 4px 12px;
       border-radius: 8px;
       margin-bottom: 12px;
-      border: 1px solid rgba(126, 226, 171, 0.2);
     }
 
     .card h3 {
       font-size: 1.15rem;
-      color: #ffffff;
+      color: var(--green-dark);
       margin-bottom: 8px;
     }
 
@@ -268,13 +360,12 @@
       will-change: transform, opacity;
     }
 
-    /* Footer */
+    /* Footer: Gradasi Hijau Gelap */
     footer {
-      background: var(--green-abyss);
-      color: var(--text-muted);
-      padding: 42px 0;
+      background: linear-gradient(135deg, var(--green-abyss) 0%, var(--green-dark) 55%, var(--green-primary) 100%);
+      color: #dcf3e6;
+      padding: 44px 0;
       margin-top: 24px;
-      border-top: 1px solid var(--border-dark);
     }
 
     footer strong {
@@ -290,13 +381,19 @@
     }
 
     footer a {
-      color: #7ee2ab;
-      text-decoration: none;
+      color: #ffffff;
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 3px;
     }
 
     @media (max-width: 768px) {
       .nav-links {
         display: none;
+      }
+
+      .cabinet-photo-frame {
+        aspect-ratio: 16 / 10;
       }
     }
 
@@ -327,32 +424,70 @@
         <li><a href="#informasi">Informasi</a></li>
         <li><a href="#kontak">Kontak</a></li>
       </ul>
-      <a href="#kontak" class="btn-primary">Kanal Resmi</a>
+      <a href="#kontak" class="btn-nav">Kanal Resmi</a>
     </div>
   </header>
 
   <main>
     <section id="beranda" class="hero">
       <div class="container">
-        <span class="pill">Student Government in FIKES UMLA · Kabinet 2026</span>[span_0](start_span)[span_0](end_span)
-        <h1 class="hero-title" data-split-words>
-          Sinergi Kesehatan dan Gerak Nyata Mahasiswa FIKES UMLA
-        </h1>
-        <p class="hero-desc">
-          Portal resmi Badan Eksekutif Mahasiswa Fakultas Ilmu Kesehatan
-          Universitas Muhammadiyah Lamongan untuk aspirasi, program kerja,
-          kaderisasi, dan publikasi kegiatan kemahasiswaan.[span_1](start_span)[span_1](end_span)
-        </p>
-        <div class="hero-actions">
-          <a href="#program" class="btn-primary">Lihat Pilar Kegiatan</a>
-          <a href="#informasi" class="btn-outline">Agenda &amp; Kanal</a>
+        <div class="hero-top">
+          <span class="pill">Student Government in FIKES UMLA · Kabinet 2026</span>
+          <h1 class="hero-title" data-split-words>
+            Sinergi Kesehatan dan Gerak Nyata Mahasiswa FIKES UMLA
+          </h1>
+          <p class="hero-desc">
+            Portal resmi Badan Eksekutif Mahasiswa Fakultas Ilmu Kesehatan
+            Universitas Muhammadiyah Lamongan untuk aspirasi, program kerja,
+            kaderisasi, dan publikasi kegiatan kemahasiswaan.
+          </p>
+          <div class="hero-actions">
+            <a href="#program" class="btn-primary">Lihat Pilar Kegiatan</a>
+            <a href="#informasi" class="btn-outline-light">Agenda &amp; Kanal</a>
+          </div>
         </div>
+
+        <!-- Tata Letak Foto Atas: Seluruh Anggota Kabinet -->
+        <figure class="cabinet-banner" data-animate-card>
+          <div class="cabinet-photo-frame">
+            <img
+              src="img/kabinet.png"
+              alt="Foto Seluruh Anggota Kabinet BEM FIKES UMLA 2026"
+              onerror="this.replaceWith(document.getElementById('cabinet-fallback').content.cloneNode(true))"
+            />
+            <template id="cabinet-fallback">
+              <svg viewBox="0 0 1200 615" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Slot Foto Seluruh Anggota Kabinet">
+                <defs>
+                  <linearGradient id="cabGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#062416" />
+                    <stop offset="50%" stop-color="#11663b" />
+                    <stop offset="100%" stop-color="#22a863" />
+                  </linearGradient>
+                </defs>
+                <rect width="1200" height="615" fill="url(#cabGrad)" />
+                <circle cx="1020" cy="120" r="180" fill="#ffffff" fill-opacity="0.08" />
+                <circle cx="180" cy="510" r="210" fill="#ffffff" fill-opacity="0.06" />
+                <rect x="36" y="36" width="1128" height="543" rx="22" fill="none" stroke="#ffffff" stroke-opacity="0.28" stroke-width="2" stroke-dasharray="10 10" />
+                <text x="600" y="285" text-anchor="middle" fill="#ffffff" font-family="Plus Jakarta Sans, sans-serif" font-size="34" font-weight="800">FOTO SELURUH ANGGOTA KABINET</text>
+                <text x="600" y="330" text-anchor="middle" fill="#dcf3e6" font-family="Plus Jakarta Sans, sans-serif" font-size="18">Simpan foto grup kabinet di folder img/kabinet.png (atau ganti src-nya)</text>
+              </svg>
+            </template>
+          </div>
+          <figcaption class="cabinet-caption">
+            <div>
+              <strong>Kabinet BEM FIKES UMLA 2026</strong> ·
+              <span>Seluruh Jajaran Pengurus Badan Eksekutif Mahasiswa Fakultas Ilmu Kesehatan</span>
+            </div>
+            <span class="cabinet-badge">@bemfikes.umla</span>
+          </figcaption>
+        </figure>
       </div>
     </section>
 
     <section id="program">
       <div class="container">
         <div class="section-head">
+          <span class="section-eyebrow">Arah Gerak Kabinet</span>
           <h2 class="section-title" data-split-words>Fokus Gerak &amp; Program Unggulan</h2>
           <p class="section-sub">
             Disusun untuk memperkuat kapasitas mahasiswa kesehatan sekaligus menjawab isu sosial dan akademik.
@@ -381,6 +516,7 @@
     <section id="informasi">
       <div class="container">
         <div class="section-head">
+          <span class="section-eyebrow">Kanal &amp; Rubrik</span>
           <h2 class="section-title" data-split-words>Sorotan Agenda &amp; Publikasi</h2>
           <p class="section-sub">
             Update rubrik dan momentum kegiatan yang hadir di kanal resmi BEM FIKES UMLA.
@@ -410,12 +546,12 @@
   <footer id="kontak">
     <div class="container footer-inner">
       <div>
-        <strong>BEM Fakultas Ilmu Kesehatan · Universitas Muhammadiyah Lamongan</strong>[span_2](start_span)[span_2](end_span)
-        <p>Email: <a href="mailto:bemfikesumla@gmail.com">bemfikesumla@gmail.com</a></p>[span_3](start_span)[span_3](end_span)
+        <strong>BEM Fakultas Ilmu Kesehatan · Universitas Muhammadiyah Lamongan</strong>
+        <p>Email: <a href="mailto:bemfikesumla@gmail.com">bemfikesumla@gmail.com</a></p>
       </div>
       <div>
-        <p>Instagram: <a href="https://instagram.com/bemfikes.umla" target="_blank" rel="noopener">@bemfikes.umla</a></p>[span_4](start_span)[span_4](end_span)[span_5](start_span)[span_5](end_span)
-        <p>Tautan: <a href="https://linktr.ee" target="_blank" rel="noopener">Taplink BEM FIKES</a></p>[span_6](start_span)[span_6](end_span)
+        <p>Instagram: <a href="https://instagram.com/bemfikes.umla" target="_blank" rel="noopener">@bemfikes.umla</a></p>
+        <p>Tautan: <a href="https://linktr.ee" target="_blank" rel="noopener">Taplink BEM FIKES</a></p>
       </div>
     </div>
   </footer>
