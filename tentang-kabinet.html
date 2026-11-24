@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- ✏️ BOLEH DIUBAH: Judul tab & deskripsi halaman Tentang Kabinet -->
+  <title>Tentang Kabinet — BEM FIKES UMLA</title>
+  <meta name="description" content="Profil, arah gerak, visi dan misi Kabinet 2026 BEM Fakultas Ilmu Kesehatan Universitas Muhammadiyah Lamongan." />
+  <meta property="og:title" content="Tentang Kabinet — BEM FIKES UMLA" />
+  <meta property="og:description" content="Mengenal identitas, visi misi, dan nilai gerak BEM FIKES UMLA." />
+  <meta property="og:image" content="img/kabinet.jpg" />
+  <link rel="icon" href="img/logofikes.png" type="image/png" />
+
+  <!-- ⛔ JANGAN DIUBAH: Font & library animasi (Lenis, GSAP + ScrollTrigger, Motion) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/motion@11.15.0/dist/motion.js"></script>
+
+  <style>
+    /* ✏️ BOLEH DIUBAH: Warna tema utama (format hex #xxxxxx) */
+    :root {
+      --bg-white: #ffffff;
+      --bg-soft: #f3faf6;
+      --green-abyss: #041910;
+      --green-dark: #0a3823;
+      --green-primary: #147a46;
+      --green-bright: #22a863;
+      --green-mint: #dcf2e6;
+      --text-dark: #0c2619;
+      --text-muted: #4b695a;
+      --border-soft: rgba(20, 122, 70, 0.16);
+    }
+
+    /* ⛔ JANGAN DIUBAH: Layout, responsif & animasi */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Plus Jakarta Sans", sans-serif;
+      background: linear-gradient(180deg, #ffffff 0%, #f4faf6 55%, #ffffff 100%);
+      color: var(--text-dark);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    .container { width: min(1180px, 92%); margin-inline: auto; }
+
+    .navbar {
+      position: sticky; top: 0; z-index: 50;
+      background: linear-gradient(90deg, rgba(4, 25, 16, 0.96) 0%, rgba(10, 56, 35, 0.94) 60%, rgba(20, 122, 70, 0.92) 100%);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 10px 0; gap: 12px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #ffffff; font-weight: 800; font-size: 0.94rem; flex-shrink: 0; }
+    .brand-logo { width: 38px; height: 38px; object-fit: contain; display: block; flex-shrink: 0; }
+    .brand-text { display: flex; flex-direction: column; line-height: 1.2; }
+    .brand-text small { font-size: 0.64rem; font-weight: 700; letter-spacing: 0.05em; color: #9be4bb; }
+
+    .nav-links { display: flex; list-style: none; gap: 16px; font-size: 0.82rem; font-weight: 600; }
+    .nav-links a { text-decoration: none; color: #e4f6ec; transition: color 0.2s ease; white-space: nowrap; }
+    .nav-links a:hover, .nav-links a.is-active { color: #8ee8b6; }
+
+    .btn-nav {
+      display: inline-flex; align-items: center; padding: 8px 16px; border-radius: 999px;
+      background: linear-gradient(135deg, #ffffff 0%, #e4f5eb 100%);
+      color: var(--green-dark); text-decoration: none; font-weight: 800; font-size: 0.8rem;
+      white-space: nowrap; flex-shrink: 0;
+    }
+
+    .menu-toggle {
+      display: none; width: 38px; height: 38px; border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.22); background: rgba(255, 255, 255, 0.08);
+      color: #ffffff; font-size: 1.15rem; cursor: pointer;
+    }
+
+    .page-banner {
+      padding: 32px 0 40px;
+      background:
+        radial-gradient(circle at 85% 18%, rgba(34, 168, 99, 0.26), transparent 48%),
+        linear-gradient(180deg, #052014 0%, #0d4b2e 65%, #dff3e8 94%, #ffffff 100%);
+    }
+
+    .page-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px; padding: 5px 12px; border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14); border: 1px solid rgba(255, 255, 255, 0.26);
+      color: #c8f3dc; font-size: 0.74rem; font-weight: 700; margin-bottom: 10px;
+    }
+
+    .page-dot { width: 7px; height: 7px; border-radius: 50%; background: #4ce093; }
+
+    .page-title {
+      font-size: clamp(1.6rem, 3.2vw, 2.5rem); font-weight: 900; line-height: 1.15;
+      color: #ffffff; margin-bottom: 10px;
+    }
+
+    .page-title span { color: #8ee8b6; }
+    .page-desc { color: #eaf7f0; font-size: 0.9rem; max-width: 60ch; }
+
+    .section-block { padding: 20px 0 40px; }
+    .section-head { margin-bottom: 16px; }
+    .section-eyebrow { display: inline-block; font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; color: var(--green-primary); margin-bottom: 4px; }
+    .section-title { font-size: clamp(1.3rem, 2.5vw, 1.85rem); font-weight: 800; color: var(--green-dark); }
+
+    .overview-grid {
+      display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+      gap: 20px; align-items: center;
+    }
+
+    .photo-frame {
+      background: linear-gradient(155deg, #ffffff 0%, #eaf7f0 100%);
+      border-radius: 18px; padding: 8px; border: 1px solid var(--border-soft);
+      box-shadow: 0 14px 32px rgba(10, 56, 35, 0.1);
+    }
+
+    .photo-frame img {
+      width: 100%; height: 290px; object-fit: cover; object-position: center 35%;
+      border-radius: 13px; display: block;
+    }
+
+    .photo-caption {
+      padding: 8px 6px 2px; font-size: 0.78rem; color: var(--text-muted); font-weight: 600;
+    }
+
+    .story-card {
+      background: linear-gradient(165deg, #ffffff 0%, #f2faf5 100%);
+      border: 1px solid var(--border-soft); border-radius: 18px; padding: 20px 22px;
+      box-shadow: 0 10px 24px rgba(10, 56, 35, 0.06);
+    }
+
+    .story-card h3 { font-size: 1.1rem; color: var(--green-dark); margin-bottom: 8px; }
+    .story-card p { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 10px; }
+    .story-card p:last-child { margin-bottom: 0; }
+
+    .vm-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 18px; }
+
+    .vm-panel { border-radius: 18px; padding: 22px; position: relative; overflow: hidden; }
+
+    .vm-visi {
+      color: #ffffff;
+      background: radial-gradient(circle at 88% 15%, rgba(34, 168, 99, 0.34), transparent 55%),
+        linear-gradient(150deg, #062416 0%, #0d472b 58%, #157c47 100%);
+      box-shadow: 0 14px 30px rgba(6, 36, 22, 0.16);
+    }
+
+    .vm-visi .badge-pill {
+      display: inline-block; padding: 4px 11px; border-radius: 999px; font-size: 0.7rem; font-weight: 800;
+      background: rgba(255, 255, 255, 0.16); color: #c8f3dc; margin-bottom: 10px;
+    }
+
+    .vm-visi h3 { font-size: 1.2rem; margin-bottom: 8px; }
+    .vm-visi p { color: #e4f6ec; font-size: 0.9rem; }
+
+    .vm-misi {
+      background: linear-gradient(165deg, #ffffff 0%, #f2faf5 100%);
+      border: 1px solid var(--border-soft);
+      box-shadow: 0 10px 24px rgba(10, 56, 35, 0.06);
+    }
+
+    .vm-misi .badge-pill {
+      display: inline-block; padding: 4px 11px; border-radius: 999px; font-size: 0.7rem; font-weight: 800;
+      background: var(--green-mint); color: var(--green-dark); margin-bottom: 10px;
+    }
+
+    .vm-misi h3 { font-size: 1.2rem; color: var(--green-dark); margin-bottom: 10px; }
+
+    .misi-list { list-style: none; display: grid; gap: 9px; }
+    .misi-list li { display: flex; gap: 10px; align-items: flex-start; font-size: 0.86rem; color: var(--text-dark); }
+    .misi-num {
+      flex-shrink: 0; width: 22px; height: 22px; border-radius: 7px;
+      background: linear-gradient(135deg, var(--green-dark), var(--green-primary));
+      color: #ffffff; font-size: 0.72rem; font-weight: 800; display: grid; place-items: center;
+      margin-top: 2px;
+    }
+
+    .values-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+
+    .value-card {
+      background: linear-gradient(165deg, #ffffff 0%, #f2faf5 100%);
+      border: 1px solid var(--border-soft); border-radius: 16px; padding: 18px 20px;
+      box-shadow: 0 8px 20px rgba(10, 56, 35, 0.05); position: relative; overflow: hidden;
+    }
+
+    .value-card::before {
+      content: ""; position: absolute; inset: 0 0 auto 0; height: 4px;
+      background: linear-gradient(90deg, var(--green-dark), var(--green-bright), #a2e4c0);
+    }
+
+    .value-card h3 { font-size: 1rem; color: var(--green-dark); margin-bottom: 4px; }
+    .value-card p { font-size: 0.85rem; color: var(--text-muted); }
+
+    .cta-strip {
+      margin-top: 16px; padding: 18px 22px; border-radius: 18px;
+      background: linear-gradient(135deg, var(--green-mint) 0%, #ffffff 100%);
+      border: 1px solid var(--border-soft);
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px;
+    }
+
+    .cta-strip strong { color: var(--green-dark); font-size: 0.95rem; display: block; }
+    .cta-strip span { color: var(--text-muted); font-size: 0.84rem; }
+
+    .btn-green {
+      display: inline-flex; align-items: center; padding: 9px 18px; border-radius: 999px;
+      background: linear-gradient(135deg, var(--green-bright) 0%, var(--green-primary) 55%, var(--green-dark) 100%);
+      color: #ffffff; text-decoration: none; font-weight: 700; font-size: 0.84rem;
+    }
+
+    [data-split-words] { overflow: hidden; }
+    .word-mask { display: inline-block; overflow: hidden; vertical-align: bottom; margin-right: 0.28em; }
+    .word-inner { display: inline-block; will-change: transform, opacity; }
+    [data-animate-card] { will-change: transform, opacity; }
+
+    footer {
+      background: linear-gradient(135deg, var(--green-abyss) 0%, var(--green-dark) 55%, var(--green-primary) 100%);
+      color: #dff4e8; padding: 38px 0 24px;
+    }
+
+    .footer-grid {
+      display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) minmax(0, 1.2fr);
+      gap: 24px; align-items: start; font-size: 0.86rem;
+    }
+
+    .footer-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .footer-brand strong { color: #ffffff; font-size: 0.96rem; display: block; }
+    .footer-brand small { color: #9be4bb; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; }
+    .footer-desc { color: #d6efe1; font-size: 0.84rem; max-width: 38ch; }
+    .footer-heading { color: #8ee8b6; font-size: 0.74rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 10px; }
+
+    .footer-nav { list-style: none; display: grid; gap: 6px; }
+    .footer-nav a { color: #e8f8ef; text-decoration: none; font-weight: 600; transition: color 0.2s ease; }
+    .footer-nav a:hover { color: #8ee8b6; }
+
+    .footer-loc p { color: #e4f6ec; margin-bottom: 5px; }
+    .footer-loc a { color: #ffffff; font-weight: 700; text-decoration: none; }
+    .footer-loc a:hover { text-decoration: underline; }
+
+    .social-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .social-link {
+      display: inline-flex; align-items: center; gap: 7px; padding: 7px 14px; border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #ffffff; text-decoration: none; font-weight: 700; font-size: 0.8rem;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .social-link:hover { background: rgba(255, 255, 255, 0.24); transform: translateY(-2px); }
+    .social-link svg { width: 16px; height: 16px; fill: currentColor; flex-shrink: 0; }
+
+    .footer-bottom {
+      margin-top: 24px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.14);
+      display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px;
+      font-size: 0.78rem; color: #bfe4cf;
+    }
+
+    @media (max-width: 1080px) {
+      .nav-links, .btn-nav { display: none; }
+      .menu-toggle { display: grid; place-items: center; }
+      .nav-links.is-open {
+        display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0;
+        background: #062416; padding: 14px 20px; gap: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .overview-grid, .vm-grid, .values-grid, .footer-grid { grid-template-columns: 1fr; }
+      .photo-frame img { height: 210px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .word-inner, [data-animate-card] { opacity: 1 !important; transform: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="index.html" class="brand">
+        <!-- ✏️ BOLEH DIUBAH: Ganti file img/logofikes.png jika logo diperbarui -->
+        <img src="img/logofikes.png" alt="Logo BEM FIKES UMLA" class="brand-logo" width="38" height="38" />
+        <span class="brand-text">
+          <!-- ✏️ BOLEH DIUBAH: Nama organisasi -->
+          <span>BEM FIKES UMLA</span>
+          <small>FAKULTAS ILMU KESEHATAN</small>
+        </span>
+      </a>
+
+      <!-- ✏️ BOLEH DIUBAH: Teks menu navigasi. ⛔ JANGAN DIUBAH: nama file .html di href -->
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="tentang-kabinet.html" class="is-active">Tentang Kabinet</a></li>
+        <li><a href="jajaran-pengurus.html">Jajaran Pengurus</a></li>
+        <li><a href="bidang-divisi.html">Bidang &amp; Divisi</a></li>
+        <li><a href="agenda-proker.html">Agenda &amp; Proker</a></li>
+        <li><a href="media-dokumentasi.html">Media &amp; Dokumentasi</a></li>
+        <li><a href="layanan-aspirasi.html">Layanan Aspirasi</a></li>
+      </ul>
+
+      <a href="https://www.instagram.com/bemfikes.umla" target="_blank" rel="noopener" class="btn-nav">@bemfikes.umla</a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-label="Buka menu navigasi">☰</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- ===== BANNER TENTANG KABINET ===== -->
+    <section class="page-banner">
+      <div class="container">
+        <!-- ✏️ BOLEH DIUBAH: Label kabinet, judul halaman & deskripsi singkat -->
+        <div class="page-eyebrow">
+          <span class="page-dot"></span>
+          <span>Profil Organisasi · Kabinet 2026</span>
+        </div>
+        <h1 class="page-title" data-split-words>
+          Tentang Kabinet <span>BEM FIKES UMLA</span>
+        </h1>
+        <p class="page-desc">
+          Mengenal peran strategis Badan Eksekutif Mahasiswa Fakultas Ilmu Kesehatan Universitas Muhammadiyah Lamongan dalam menghimpun, memberdayakan, dan mengadvokasi mahasiswa kesehatan.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== GAMBARAN UMUM & FOTO KABINET ===== -->
+    <section class="section-block">
+      <div class="container">
+        <div class="overview-grid">
+          <figure class="photo-frame" data-animate-card>
+            <!-- ✏️ BOLEH DIUBAH: Foto kabinet & keterangan -->
+            <img src="img/kabinet.jpg" alt="Formasi pengurus BEM FIKES UMLA" width="1800" height="1013"
+                 onerror="this.style.display='none'" />
+            <figcaption class="photo-caption">
+              Dokumentasi Pengurus BEM Fakultas Ilmu Kesehatan Universitas Muhammadiyah Lamongan
+            </figcaption>
+          </figure>
+
+          <!-- ✏️ BOLEH DIUBAH: Narasi profil kabinet sesuai dokumen resmi BEM FIKES UMLA -->
+          <div class="story-card" data-animate-card>
+            <span class="section-eyebrow">Identitas &amp; Peran</span>
+            <h3>Lembaga Eksekutif Mahasiswa di Tingkat Fakultas</h3>
+            <p>
+              BEM FIKES UMLA merupakan organisasi kemahasiswaan intra-kampus di lingkungan Fakultas Ilmu Kesehatan Universitas Muhammadiyah Lamongan yang berfungsi sebagai motor penggerak kegiatan mahasiswa lintas program studi kesehatan.
+            </p>
+            <p>
+              Melalui sinergi antarbidang dan divisi, kabinet bekerja menghadirkan ruang tumbuh kepemimpinan, penguatan kapasitas kader, advokasi kesejahteraan mahasiswa, serta edukasi kesehatan yang bermanfaat bagi kampus dan masyarakat.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== VISI & MISI KABINET ===== -->
+    <section class="section-block">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">Arah &amp; Haluan Gerak</span>
+          <h2 class="section-title" data-split-words>Visi &amp; Misi Kabinet</h2>
+        </div>
+
+        <div class="vm-grid">
+          <!-- ✏️ BOLEH DIUBAH: Isi Visi kabinet -->
+          <div class="vm-panel vm-visi" data-animate-card>
+            <span class="badge-pill">VISI KABINET</span>
+            <h3>Terwujudnya BEM FIKES UMLA yang Progresif, Kolaboratif, dan Berdaya Guna</h3>
+            <p>
+              Menjadikan BEM FIKES UMLA sebagai wadah aspirasi dan pengembangan potensi mahasiswa kesehatan yang berintegritas, responsif terhadap isu kampus dan kesehatan masyarakat, serta berlandaskan nilai keislaman dan kemuhammadiyahan.
+            </p>
+          </div>
+
+          <!-- ✏️ BOLEH DIUBAH: Butir Misi kabinet (tambah/kurangi <li> sesuai kebutuhan) -->
+          <div class="vm-panel vm-misi" data-animate-card>
+            <span class="badge-pill">MISI KABINET</span>
+            <h3>Langkah Strategis Pengabdian &amp; Pergerakan</h3>
+            <ul class="misi-list">
+              <li>
+                <span class="misi-num">1</span>
+                <span>Memperkuat kaderisasi dan kapasitas kepemimpinan mahasiswa FIKES UMLA secara terarah dan berkelanjutan.</span>
+              </li>
+              <li>
+                <span class="misi-num">2</span>
+                <span>Mengawal aspirasi serta kesejahteraan mahasiswa melalui advokasi dan kajian isu yang objektif dan solutif.</span>
+              </li>
+              <li>
+                <span class="misi-num">3</span>
+                <span>Menghadirkan program kerja edukatif, sosial, dan kesehatan masyarakat yang berdampak nyata.</span>
+              </li>
+              <li>
+                <span class="misi-num">4</span>
+                <span>Mengoptimalkan publikasi, media kreatif, dan komunikasi informasi yang transparan bagi civitas akademika.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== NILAI GERAK KABINET ===== -->
+    <section class="section-block">
+      <div class="container">
+        <div class="section-head">
+          <span class="section-eyebrow">Budaya Kerja</span>
+          <h2 class="section-title" data-split-words>Nilai Dasar Pergerakan</h2>
+        </div>
+
+        <!-- ✏️ BOLEH DIUBAH: Nilai-nilai utama kabinet -->
+        <div class="values-grid">
+          <article class="value-card" data-animate-card>
+            <h3>Integritas &amp; Amanah</h3>
+            <p>Menjalankan setiap tanggung jawab organisasi dengan jujur, terbuka, dan dapat dipertanggungjawabkan.</p>
+          </article>
+          <article class="value-card" data-animate-card>
+            <h3>Sinergi &amp; Kolaborasi</h3>
+            <p>Merangkul seluruh elemen mahasiswa, ORMAWA, fakultas, dan mitra untuk bergerak bersama.</p>
+          </article>
+          <article class="value-card" data-animate-card>
+            <h3>Responsif &amp; Solutif</h3>
+            <p>Cepat tanggap terhadap aspirasi mahasiswa serta menghadirkan gagasan dan aksi yang aplikatif.</p>
+          </article>
+        </div>
+
+        <!-- ✏️ BOLEH DIUBAH: Ajakan lanjut ke halaman struktur pengurus -->
+        <div class="cta-strip" data-animate-card>
+          <div>
+            <strong>Kenali Penggerak Kabinet BEM FIKES UMLA</strong>
+            <span>Lihat susunan BPH dan pengurus aktif pada halaman Jajaran Pengurus.</span>
+          </div>
+          <a href="jajaran-pengurus.html" class="btn-green">Lihat Jajaran Pengurus</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER: SOSMED (TETAP) + NAVIGASI WEBSITE + LOKASI KAMPUS ===== -->
+  <!-- ⛔ JANGAN DIUBAH: blok sosmed & id="kontak" -->
+  <footer id="kontak">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <img src="img/logofikes.png" alt="Logo BEM FIKES UMLA" class="brand-logo" width="42" height="42" />
+            <div>
+              <strong>BEM FIKES UMLA</strong>
+              <small>KABINET 2026</small>
+            </div>
+          </div>
+          <p class="footer-desc">
+            Badan Eksekutif Mahasiswa Fakultas Ilmu Kesehatan Universitas Muhammadiyah Lamongan. Progresif, Edukatif, dan Berdaya Saing.
+          </p>
+
+          <!-- ⛔ JANGAN DIUBAH: Sosial media BEM FIKES -->
+          <div class="social-list">
+            <a class="social-link" href="https://www.instagram.com/bemfikes.umla" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6zm5.3-3.1a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></svg>Instagram</a>
+            <a class="social-link" href="https://www.tiktok.com/@bemfikes.umla" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 2h-3.2v13.4a2.8 2.8 0 1 1-2-2.7V9.4a6 6 0 1 0 5.2 5.9V8.6a7.4 7.4 0 0 0 4.3 1.4V6.8A4.3 4.3 0 0 1 16.6 2z"/></svg>TikTok</a>
+            <a class="social-link" href="https://youtube.com/@bemfikesumla" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4A2.5 2.5 0 0 0 2.4 7.2C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5.2 3L10 15z"/></svg>YouTube</a>
+          </div>
+        </div>
+
+        <!-- ✏️ BOLEH DIUBAH: Daftar navigasi website -->
+        <div>
+          <div class="footer-heading">NAVIGASI WEBSITE</div>
+          <ul class="footer-nav">
+            <li><a href="index.html">Beranda</a></li>
+            <li><a href="tentang-kabinet.html">Tentang Kabinet</a></li>
+            <li><a href="jajaran-pengurus.html">Jajaran Pengurus</a></li>
+            <li><a href="bidang-divisi.html">Bidang &amp; Divisi</a></li>
+            <li><a href="agenda-proker.html">Agenda &amp; Proker</a></li>
+            <li><a href="media-dokumentasi.html">Media &amp; Dokumentasi</a></li>
+            <li><a href="layanan-aspirasi.html">Layanan Aspirasi</a></li>
+          </ul>
+        </div>
+
+        <!-- ✏️ BOLEH DIUBAH: Lokasi kampus & email resmi -->
+        <div class="footer-loc">
+          <div class="footer-heading">LOKASI KAMPUS</div>
+          <p><strong>Universitas Muhammadiyah Lamongan (UMLA)</strong></p>
+          <p>Jl. Raya Plalangan Plosowahyu KM 02, Lamongan, Jawa Timur</p>
+          <p style="margin-top: 10px;">
+            Email: <a href="mailto:bemfikesumla@gmail.com">bemfikesumla@gmail.com</a>
+          </p>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span>© 2026 BEM FIKES UMLA. Seluruh hak cipta dilindungi.</span>
+        <span>Fakultas Ilmu Kesehatan · Universitas Muhammadiyah Lamongan</span>
+      </div>
+    </div>
+  </footer>
+  <!-- ⛔ JANGAN DIUBAH: Skrip menu mobile & animasi (Lenis, GSAP + ScrollTrigger, Motion) -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const toggle = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
+      if (toggle && navLinks) {
+        toggle.addEventListener("click", () => navLinks.classList.toggle("is-open"));
+        navLinks.querySelectorAll("a").forEach((a) =>
+          a.addEventListener("click", () => navLinks.classList.remove("is-open"))
+        );
+      }
+
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+      if (window.Lenis) {
+        const lenis = new Lenis({
+          duration: 1.15,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          smoothWheel: true,
+        });
+
+        if (window.gsap && window.ScrollTrigger) {
+          gsap.registerPlugin(ScrollTrigger);
+          lenis.on("scroll", ScrollTrigger.update);
+          gsap.ticker.add((time) => lenis.raf(time * 1000));
+          gsap.ticker.lagSmoothing(0);
+        } else {
+          const raf = (time) => {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+          };
+          requestAnimationFrame(raf);
+        }
+      }
+
+      if (window.gsap && window.ScrollTrigger) {
+        document.querySelectorAll("[data-split-words]").forEach((el) => {
+          const walk = (node) => {
+            [...node.childNodes].forEach((n) => {
+              if (n.nodeType === 3) {
+                const frag = document.createDocumentFragment();
+                n.textContent.split(/(\s+)/).forEach((part) => {
+                  if (!part) return;
+                  if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(" ")); return; }
+                  const mask = document.createElement("span");
+                  mask.className = "word-mask";
+                  const inner = document.createElement("span");
+                  inner.className = "word-inner";
+                  inner.textContent = part;
+                  mask.appendChild(inner);
+                  frag.appendChild(mask);
+                });
+                n.replaceWith(frag);
+              } else if (n.nodeType === 1) {
+                walk(n);
+              }
+            });
+          };
+          walk(el);
+
+          const isAboveFold = el.getBoundingClientRect().top < window.innerHeight * 0.92;
+          gsap.from(el.querySelectorAll(".word-inner"), {
+            yPercent: 110, opacity: 0, duration: 0.8, ease: "power3.out", stagger: 0.065,
+            ...(isAboveFold
+              ? { delay: 0.1 }
+              : { scrollTrigger: { trigger: el, start: "top 88%", once: true } }),
+          });
+        });
+      }
+
+      const MotionGlobal = window.Motion;
+      const cards = document.querySelectorAll("[data-animate-card]");
+      if (MotionGlobal && cards.length) {
+        const { animate, inView } = MotionGlobal;
+        cards.forEach((card) => {
+          animate(card, { opacity: 0, y: 28 }, { duration: 0 });
+          inView(
+            card,
+            () => {
+              animate(card, { opacity: 1, y: 0 }, { duration: 0.65, ease: [0.22, 1, 0.36, 1] });
+            },
+            { amount: "some" }
+          );
+          card.addEventListener("pointerenter", () => {
+            animate(card, { y: -6, scale: 1.012 }, { type: "spring", stiffness: 360, damping: 24 });
+          });
+          card.addEventListener("pointerleave", () => {
+            animate(card, { y: 0, scale: 1 }, { type: "spring", stiffness: 360, damping: 26 });
+          });
+        });
+      }
+    });
+  </script>
+</body>
+</html>
